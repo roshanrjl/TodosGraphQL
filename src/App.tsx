@@ -1,12 +1,13 @@
 import React from 'react';
-import { ApolloProvider } from '@apollo/client';
-import { client } from './graphql/client';
+import { QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { queryClient } from './lib/queryClient';
 import { TodoList } from './components/TodoList';
 import { ClipboardList } from 'lucide-react';
 
 function App() {
   return (
-    <ApolloProvider client={client}>
+    <QueryClientProvider client={queryClient}>
       <div className="min-h-screen bg-gray-100 py-8 px-4">
         <div className="max-w-md mx-auto">
           <div className="text-center mb-8">
@@ -19,7 +20,8 @@ function App() {
           <TodoList />
         </div>
       </div>
-    </ApolloProvider>
+      <ReactQueryDevtools />
+    </QueryClientProvider>
   );
 }
 
